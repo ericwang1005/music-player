@@ -1,6 +1,6 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app>
+  <v-app id="inspire" class="app" dark>
+    <v-navigation-drawer v-model="drawer" app class="drawer">
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="text-h6"> EW-Music </v-list-item-title>
@@ -50,3 +50,11 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.app {
+  background-color: rgb(54, 51, 51);
+}
+.drawer {
+  background-color: rgb(54, 51, 51);
+}
+</style>

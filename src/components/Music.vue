@@ -6,7 +6,7 @@
       </v-list-item-avatar>
 
       <v-list-item-content>
-        <v-list-item-title v-text="music.snippet.title"></v-list-item-title>
+        <v-list-item-title v-text="music.title"></v-list-item-title>
 
         <v-list-item-subtitle
           v-text="music.snippet.description"
@@ -14,8 +14,8 @@
       </v-list-item-content>
 
       <v-list-item-action>
-        <v-btn icon @click="playMusic()">
-          <v-icon color="grey lighten-1">mdi-arrow-right-drop-circle</v-icon>
+        <v-btn icon @click="playMusic(music)">
+          <v-icon color="grey lighten-1"> mdi-arrow-right-drop-circle </v-icon>
         </v-btn>
       </v-list-item-action>
     </v-list-item>
@@ -31,20 +31,16 @@ export default {
       musicInfo: null,
       apiKey: "AIzaSyDtxot_xW8r-kKs7Cce7KvdnpuRB99REXM",
       keyWord: "music",
-      maxResults: 10,
+      maxResults: 15,
     };
   },
   methods: {
-    playMusic() {
-      var music = this.musicInfo;
-      var link = music.map(
-        (music) => `https://www.youtube.com/watch?v=${music.id.videoId}`
-      );
-      console.log(link);
+    playMusic(music) {
+      return window.open(`https://www.youtube.com/watch?v=${music.id.videoId}`);
     },
   },
-  mounted() {
-    axios
+  async mounted() {
+    await axios
       .get(
         `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${this.maxResults}&q=${this.keyWord}&key=${this.apiKey}`
       )
